@@ -1,0 +1,26 @@
+Лесопарковая;golos (2).wav;golos (1).wav;no
+Парк Гагарина;golos (4).wav;golos (3).wav;yes
+ЮУрГУ;golos (6).wav;golos (5).wav;yes
+Гражданпроект;golos (8).wav;golos (7).wav;no
+Агруниверситет;golos (10).wav;golos (9).wav;no
+Алое Поле;golos (12).wav;golos (11).wav;yes
+Публичная библиотека;golos (14).wav;golos (13).wav;no
+Площадь революции;golos (16).wav;golos (15).wav;yes
+Детский мир;golos (18).wav;golos (17).wav;yes
+Центральный рынок;golos (20).wav;golos (19).wav;yes
+Бизнес-дом Спиридонов;golos (22).wav;golos (21).wav;no
+Музей ЧТЗ;golos (24).wav;golos (23).wav;no
+Комсомольская пл.;golos (26).wav;golos (25).wav;yes
+Автомеханический завод;golos (28).wav;golos (27).wav;no
+Опытный завод;golos (30).wav;golos (29).wav;no
+КБС;golos (32).wav;golos (31).wav;yes
+Технический колледж;golos (34).wav;golos (33).wav;yes
+Шота Руставели;golos (36).wav;golos (35).wav;no
+Дом обуви;golos (38).wav;golos (37).wav;no
+ТРК Аврора;golos (40).wav;golos (39).wav;no
+Управление соцзащиты;golos (42).wav;golos (41).wav;no
+Библиотека им. Мами;golos (44).wav;golos (43).wav;yes
+Промышленно-гуманитарный колледж;golos (46).wav;golos (45).wav;yes
+Комплекс Смолинский;golos (48).wav;golos (47).wav;no
+Новоросийская;golos (50).wav;golos (49).wav;no
+Школа 130;golos (52).wav;golos (51).wav;yes
