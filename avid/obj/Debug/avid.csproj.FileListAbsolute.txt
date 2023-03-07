@@ -6,3 +6,11 @@ C:\Users\nekitgam\Documents\Visual Studio 2008\Projects\avid\avid\bin\Debug\avid
 C:\Users\nekitgam\Documents\Visual Studio 2008\Projects\avid\avid\bin\Debug\avid.pdb
 C:\Users\nekitgam\Documents\Visual Studio 2008\Projects\avid\avid\obj\Debug\avid.exe
 C:\Users\nekitgam\Documents\Visual Studio 2008\Projects\avid\avid\obj\Debug\avid.pdb
+C:\Users\nekitgam\Documents\Visual Studio 2008\Projects\avid\AutoInformator-WindowsCE-6.0\avid\bin\Debug\avid.exe
+C:\Users\nekitgam\Documents\Visual Studio 2008\Projects\avid\AutoInformator-WindowsCE-6.0\avid\bin\Debug\avid.pdb
+C:\Users\nekitgam\Documents\Visual Studio 2008\Projects\avid\AutoInformator-WindowsCE-6.0\avid\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\nekitgam\Documents\Visual Studio 2008\Projects\avid\AutoInformator-WindowsCE-6.0\avid\obj\Debug\avid.Form1.resources
+C:\Users\nekitgam\Documents\Visual Studio 2008\Projects\avid\AutoInformator-WindowsCE-6.0\avid\obj\Debug\avid.Properties.Resources.resources
+C:\Users\nekitgam\Documents\Visual Studio 2008\Projects\avid\AutoInformator-WindowsCE-6.0\avid\obj\Debug\avid.csproj.GenerateResource.Cache
+C:\Users\nekitgam\Documents\Visual Studio 2008\Projects\avid\AutoInformator-WindowsCE-6.0\avid\obj\Debug\avid.exe
+C:\Users\nekitgam\Documents\Visual Studio 2008\Projects\avid\AutoInformator-WindowsCE-6.0\avid\obj\Debug\avid.pdb
