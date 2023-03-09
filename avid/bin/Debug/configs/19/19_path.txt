@@ -1,0 +1,21 @@
+﻿Пос. Преозерный;19m (2).wav;19m (1).wav;no
+Танкистов (Бажова);19m (4).wav;19m (3).wav;no
+Лицей 120;19m (6).wav;19m (5).wav;no
+Магазин Радуга;19m (8).wav;19m (7).wav;no
+Бажова;19m (10).wav;19m (9).wav;no
+Котина;19m (12).wav;19m (11).wav;no
+Сад Победы;19m (14).wav;19m (13).wav;no
+1 Пятилетки (Героев Танкограда);19m (16).wav;19m (15).wav;no
+Театр ЧТЗ;19m (18).wav;19m (17).wav;no
+Комсомольская пл.;golos (26).wav;golos (25).wav;no
+Гранд-отель Видгоф;19m (20).wav;19m (19).wav;no
+Бизнес-дом Спиридонов;golos (22).wav;golos (21).wav;no
+Центральный рынок;golos (20).wav;golos (19).wav;no
+Детский мир;golos (18).wav;golos (17).wav;yes
+Площадь революции;golos (16).wav;golos (15).wav;no
+Публичная библиотека;golos (14).wav;golos (13).wav;no
+Алое Поле;golos (12).wav;golos (11).wav;no
+Агроуниверситет;golos (10).wav;golos (9).wav;no
+Гражданпроект;golos (8).wav;golos (7).wav;no
+ЮУрГУ;golos (6).wav;golos (5).wav;no
+Парк Гагарина;golos (4).wav;golos (3).wav;no

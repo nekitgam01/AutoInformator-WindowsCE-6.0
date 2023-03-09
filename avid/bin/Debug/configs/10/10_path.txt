@@ -13,13 +13,13 @@
 Комсомольская пл.;golos (26).wav;golos (25).wav;yes
 Автомеханический завод;golos (28).wav;golos (27).wav;no
 Опытный завод;golos (30).wav;golos (29).wav;no
-КБС;golos (32).wav;golos (31).wav;yes
+Харлова (КБС);golos (32).wav;golos (31).wav;yes
 Технический колледж;golos (34).wav;golos (33).wav;yes
 Шота Руставели;golos (36).wav;golos (35).wav;no
 Дом обуви;golos (38).wav;golos (37).wav;no
 ТРК Аврора;golos (40).wav;golos (39).wav;no
 Управление соцзащиты;golos (42).wav;golos (41).wav;no
-Библиотека им. Мами;golos (44).wav;golos (43).wav;yes
+Библиотека им. Мамина-Сибиряка;golos (44).wav;golos (43).wav;yes
 Промышленно-гуманитарный колледж;golos (46).wav;golos (45).wav;yes
 Комплекс Смолинский;golos (48).wav;golos (47).wav;no
 Новоросийская;golos (50).wav;golos (49).wav;no

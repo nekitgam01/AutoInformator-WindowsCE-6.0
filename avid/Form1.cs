@@ -22,22 +22,13 @@ namespace avid
         //Путь до папки exe файла
         String appDir = "";
 
-        //Списки параметров из конфигурационных файлов
-        List<string> paths;       //Остановки
-        List<string> events;      //События перед остановками (Типа "Следующая остановка - такая-то")
-        List<string> mn;          //Воспроизводить ли random_yes на данной остановке, бывает yes или no
-        List<string> ob;          //Обязательное воспроизвдение перед events (Например "осторожно, двери закрываются", после выполняется events "Следующая остановка такая-то")
-        List<string> post;        //Обязательное вопроизведение после events
-        List<string> random_yes;  //Воспроизведение случайной записи из списка, при условии что на данной остановке стоит yes в paths
-        List<string> greeting;    //Приветствие - воспроизводит случайное приветствие из списка при нажатии на кнопку
-        List<string> all;         //Обязательно воспроизводятся все записи перед path, ob или events (короче, всегда в начале, типа звук "ты-дын")
-        List<string> end;         //Объявляет, что остановка конечная (воспроизводятся все записи в списке)
-        List<string> post_ost;    //Воспроизводит случайную запись после paths, если в звписи есть yes
+        //Контроллер маршрутов
+        RoutesController rc;
 
         //Список повторяемых записей
         List<string> replay;      //Пополяется после каждого воспроизведения служит для повторения последнего воспроизведения (кнопка "повторить")
 
-
+        //Параметры управления переключения маршрута
         bool next = false;        //Переключатель между paths и events, чтобы сначало говорило "следующая остановка такая-то", а в следующий раз "остановка такая-то"
         bool complete = false;    //Переключатель, определяющий препоследнюю запись при переключении вручную позиции остановки
 
@@ -51,190 +42,23 @@ namespace avid
             //Присваеиваем appDir путь до папки с программой
             appDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase);
 
-            //Инициализируем списки
-            paths = new List<string>();
-            events = new List<string>();
-            mn = new List<string>();
-            ob = new List<string>();
-            post = new List<string>();
-            random_yes = new List<string>();
-            greeting = new List<string>();
-            all = new List<string>();
-            end = new List<string>();
-            post_ost = new List<string>();
+            //Инициализируем реплей список
             replay = new List<string>();
 
-            //Указываем, что движение идет вперед
-            cbPath.SelectedIndex = 0;
-
-            //Очищаем списки и загружаем данные из файлов
-            ob.Clear();
-            var path = Path.Combine(appDir, @"ob.txt");
-            FileInfo fi = new FileInfo(path);
-            if (fi.Exists)
+            //Инициализируем контроллер маршрутов
+            rc = new RoutesController();
+            
+            //Чистим выпадающее меню выбора маршрута и заполняем его из записей контроллера
+            cbRoute.Items.Clear();
+            for (int i = 0; i < rc.GetCount(); i++)
             {
-                using (StreamReader sr = fi.OpenText())
-                {
-                    string s = "";
-                    while ((s = sr.ReadLine()) != null)
-                    {
-                        ob.Add(s);
-                    }
-                }
+                cbRoute.Items.Add(rc.GetName(i));
             }
 
-            random_yes.Clear();
-            path = Path.Combine(appDir, @"random_yes.txt");
-            fi = new FileInfo(path);
-            if (fi.Exists)
+            if (cbRoute.Items.Count > 0)
             {
-                using (StreamReader sr = fi.OpenText())
-                {
-                    string s = "";
-                    while ((s = sr.ReadLine()) != null)
-                    {
-                        random_yes.Add(s);
-                    }
-                }
+                cbRoute.SelectedIndex = 0;
             }
-
-            post.Clear();
-            path = Path.Combine(appDir, @"post.txt");
-            fi = new FileInfo(path);
-            if (fi.Exists)
-            {
-                using (StreamReader sr = fi.OpenText())
-                {
-                    string s = "";
-                    while ((s = sr.ReadLine()) != null)
-                    {
-                        post.Add(s);
-                    }
-                }
-            }
-
-            greeting.Clear();
-            path = Path.Combine(appDir, @"greeting.txt");
-            fi = new FileInfo(path);
-            if (fi.Exists)
-            {
-                using (StreamReader sr = fi.OpenText())
-                {
-                    string s = "";
-                    while ((s = sr.ReadLine()) != null)
-                    {
-                        greeting.Add(s);
-                    }
-                }
-            }
-
-
-            all.Clear();
-            path = Path.Combine(appDir, @"all.txt");
-            fi = new FileInfo(path);
-            if (fi.Exists)
-            {
-                using (StreamReader sr = fi.OpenText())
-                {
-                    string s = "";
-                    while ((s = sr.ReadLine()) != null)
-                    {
-                        all.Add(s);
-                    }
-                }
-            }
-
-            end.Clear();
-            path = Path.Combine(appDir, @"end.txt");
-            fi = new FileInfo(path);
-            if (fi.Exists)
-            {
-                using (StreamReader sr = fi.OpenText())
-                {
-                    string s = "";
-                    while ((s = sr.ReadLine()) != null)
-                    {
-                        end.Add(s);
-                    }
-                }
-            }
-
-            post_ost.Clear();
-            path = Path.Combine(appDir, @"post_ost.txt");
-            fi = new FileInfo(path);
-            if (fi.Exists)
-            {
-                using (StreamReader sr = fi.OpenText())
-                {
-                    string s = "";
-                    while ((s = sr.ReadLine()) != null)
-                    {
-                        post_ost.Add(s);
-                    }
-                }
-            }
-
-            //Очищаем список и выпадающее меню с выбором остановки
-            paths.Clear();
-            cbRecord.Items.Clear();
-            //Считываем записи с файла path.txt - запихивая в paths и events пути до wav файлов, 
-            //в mn - yes или no записи, и текст в выпадающий список выбора остановки
-            path = Path.Combine(appDir, @"path.txt");
-            fi = new FileInfo(path);
-            if (fi.Exists)
-            {
-
-                using (StreamReader sr = fi.OpenText())
-                {
-                    bool b = false;
-                    int state = 0;
-                    string s = "";
-                    string res = "";
-                    while ((s = sr.ReadLine()) != null)
-                    {
-                        for (int i = 0; i < s.Length; i++)
-                        {
-                            char c = s[i];
-
-                            if (c == ';')
-                            {
-                                if (state == 0)
-                                {
-                                    cbRecord.Items.Add(res);
-                                }
-                                else if (state == 1)
-                                {
-                                    paths.Add(res);
-                                }
-                                else if (state == 2)
-                                {
-                                    events.Add(res);
-                                    b = true;
-                                    state = -1;
-                                }
-                                res = "";
-                                state++;
-                            }
-                            else
-                            {
-                                res = res + c;
-                            }    
-                        }
-                        if (b)
-                        {
-                            mn.Add(res);
-                            res = "";
-                            b = false;
-                        }
-                    }
-                }
-
-                cbRecord.SelectedIndex = 0;
-
-                replay.Clear();
-                replay.Add(paths[0]);
-            }
-
         }
 
         /*Функция воспроизведения записей с добавлением их в replay список*/
@@ -287,15 +111,15 @@ namespace avid
             }
 
             //Воспроизводим обязательный "ты-дын"
-            for (int j = 0; j < all.Count; j++)
+            for (int j = 0; j < rc.GetAllCount(cbRoute.SelectedIndex); j++)
             {
-                Speach(all[j]);
+                Speach(rc.GetAllPath(cbRoute.SelectedIndex,j));
             }
 
             if (!next) //Воспроизводим если мы на остановке
             {
                 //Воспроизводим остановку
-                Speach(paths[cbRecord.SelectedIndex]);
+                Speach(rc.GetPathsPath(cbRoute.SelectedIndex, cbRecord.SelectedIndex));
                 if ((cbRecord.SelectedIndex == 0) || (cbRecord.SelectedIndex == cbRecord.Items.Count-1))
                 {
                     started = false;
@@ -306,9 +130,9 @@ namespace avid
                 {
                     if (cbRecord.SelectedIndex == cbRecord.Items.Count - 1)
                     {
-                        for (int j = 0; j < end.Count; j++)
+                        for (int j = 0; j < rc.GetEndCount(cbRoute.SelectedIndex); j++)
                         {
-                            Speach(end[j]);
+                            Speach(rc.GetEndPath(cbRoute.SelectedIndex, j));
                         }
                     }
                 }
@@ -316,21 +140,21 @@ namespace avid
                 {
                     if (cbRecord.SelectedIndex == 0)
                     {
-                        for (int j = 0; j < end.Count; j++)
+                        for (int j = 0; j < rc.GetEndCount(cbRoute.SelectedIndex); j++)
                         {
-                            Speach(end[j]);
+                            Speach(rc.GetEndPath(cbRoute.SelectedIndex, j));
                         }
                     }
                 }
 
-                //Если в path.txt на этйо позиции указано yes - то воспроизводим сообщение после названия остановки
-                if (mn[cbRecord.SelectedIndex] == "yes")
+                //Если в path.txt на этой позиции указано yes - то воспроизводим сообщение после названия остановки
+                if (rc.GetMnPath(cbRoute.SelectedIndex,cbRecord.SelectedIndex) == "yes")
                 {
-                    if (post_ost.Count > 0)
+                    if (rc.GetPostOstCount(cbRoute.SelectedIndex) > 0)
                     {
                         Random rnd = new Random();
-                        int i = rnd.Next(0, post_ost.Count);
-                        Speach(post_ost[i]);
+                        int i = rnd.Next(0, rc.GetPostOstCount(cbRoute.SelectedIndex));
+                        Speach(rc.GetPostOstPath(cbRoute.SelectedIndex, i));
                     }
                 }
 
@@ -357,22 +181,22 @@ namespace avid
             else //Воспроизводим - если выезжаем к остановке
             {
                 //Воспроизводим запись перед отправкой (осторожно, двери закрываются)
-                for (int j = 0; j < ob.Count; j++)
+                for (int j = 0; j < rc.GetObCount(cbRoute.SelectedIndex); j++)
                 {
-                    Speach(ob[j]);
+                    Speach(rc.GetObPath(cbRoute.SelectedIndex, j));
                 }
 
                 //Воспроизводим сообщение об отправке (следующая остановка такая-то)
-                Speach(events[cbRecord.SelectedIndex]);
+                Speach(rc.GetEventsPath(cbRoute.SelectedIndex, cbRecord.SelectedIndex));
 
                 //Если следующая остановка конечная - говорим об этом
                 if (cbPath.SelectedIndex == 0)
                 {
                     if (cbRecord.SelectedIndex == cbRecord.Items.Count - 1)
                     {
-                        for (int j = 0; j < end.Count; j++)
+                        for (int j = 0; j < rc.GetEndCount(cbRoute.SelectedIndex); j++)
                         {
-                            Speach(end[j]);
+                            Speach(rc.GetEndPath(cbRoute.SelectedIndex, j));
                         }
                     }
                 }
@@ -380,29 +204,45 @@ namespace avid
                 {
                     if (cbRecord.SelectedIndex == 0)
                     {
-                        for (int j = 0; j < end.Count; j++)
+                        for (int j = 0; j < rc.GetEndCount(cbRoute.SelectedIndex); j++)
                         {
-                            Speach(end[j]);
+                            Speach(rc.GetEndPath(cbRoute.SelectedIndex, j));
                         }
                     }
                 }
 
                 //Воспроизводим после объявления конечной
-                for (int j = 0; j < ob.Count; j++)
+                for (int j = 0; j < rc.GetObCount(cbRoute.SelectedIndex); j++)
                 {
-                    Speach(post[j]);
+                    Speach(rc.GetPostPath(cbRoute.SelectedIndex, j));
                 }
 
                 //Если в path.txt в данной записи стоит yes - воспроизводим случайную запись
-                if (mn[cbRecord.SelectedIndex] == "yes")
+                if ((cbPath.SelectedIndex == 0) && (cbRecord.SelectedIndex > 0))
                 {
-                    if (random_yes.Count > 0)
+                    if (rc.GetMnPath(cbRoute.SelectedIndex, cbRecord.SelectedIndex-1) == "yes")
                     {
-                        Random rnd = new Random();
-                        int i = rnd.Next(0, random_yes.Count);
-                        Speach(random_yes[i]);
+                        if (rc.GetRandomYesCount(cbRoute.SelectedIndex) > 0)
+                        {
+                            Random rnd = new Random();
+                            int i = rnd.Next(0, rc.GetRandomYesCount(cbRoute.SelectedIndex));
+                            Speach(rc.GetRandomYesPath(cbRoute.SelectedIndex, i));
+                        }
                     }
                 }
+                else if ((cbPath.SelectedIndex == 0) && (cbRecord.SelectedIndex < cbRecord.Items.Count - 1))
+                {
+                    if (rc.GetMnPath(cbRoute.SelectedIndex, cbRecord.SelectedIndex+1) == "yes")
+                    {
+                        if (rc.GetRandomYesCount(cbRoute.SelectedIndex) > 0)
+                        {
+                            Random rnd = new Random();
+                            int i = rnd.Next(0, rc.GetRandomYesCount(cbRoute.SelectedIndex+1));
+                            Speach(rc.GetRandomYesPath(cbRoute.SelectedIndex, i));
+                        }
+                    }
+                }
+                
 
                 
                 //Переключаем режим на "приехали на остановку" и ждем следующего нажатия кнопки
@@ -419,17 +259,17 @@ namespace avid
             replay.Clear();
 
             //Воспроизводим обязательный ты-дын
-            for (int j = 0; j < all.Count; j++)
+            for (int j = 0; j < rc.GetAllCount(cbRoute.SelectedIndex); j++)
             {
-                Speach(all[j]);
+                Speach(rc.GetAllPath(cbRoute.SelectedIndex, j));
             }
 
             //Воспроизводим случайное приветствие
-            if (greeting.Count>0)
+            if (rc.GetGreetingCount(cbRoute.SelectedIndex) > 0)
             {
                 Random rnd = new Random();
-                int i = rnd.Next(0, greeting.Count);
-                Speach(greeting[i]);
+                int i = rnd.Next(0, rc.GetGreetingCount(cbRoute.SelectedIndex));
+                Speach(rc.GetGreetingPath(cbRoute.SelectedIndex, i));
             }
         }
 
@@ -465,6 +305,39 @@ namespace avid
         {
             button2.Width = this.Width / 2;
             button3.Width = this.Width / 2;
+            panel5.Width = this.Width / 2;
+            panel3.Width = this.Width / 2;
+        }
+
+        /*Подгружаем остановки в выпадающий список на основе маршрута*/
+        private void RouteInit()
+        {
+            cbRecord.Items.Clear();
+
+            if ((cbRoute.SelectedIndex!=-1) && (cbRoute.SelectedIndex < cbRoute.Items.Count))
+            {
+                for (int j = 0; j < rc.GetPathsNamesCount(cbRoute.SelectedIndex); j++)
+                {
+                    cbRecord.Items.Add(rc.GetPathsName(cbRoute.SelectedIndex, j));
+                }
+            }
+            cbRecord.SelectedIndex = 0;
+
+            //Очищаем параметры
+            cbPath.SelectedIndex = 0;
+            
+            next = false;
+            complete = false;
+            started = false;
+
+            replay.Clear();
+            replay.Add(rc.GetPathsPath(cbRoute.SelectedIndex, 0));
+        }
+
+        /*Функция выбра маршрута*/
+        private void cbRoute_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RouteInit();
         }
     }
 }
