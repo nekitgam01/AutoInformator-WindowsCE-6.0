@@ -1,8 +1,8 @@
-Лесопарковая;golos (2).wav;golos (1).wav;no
+﻿Лесопарковая;golos (2).wav;golos (1).wav;no
 Парк Гагарина;golos (4).wav;golos (3).wav;yes
 ЮУрГУ;golos (6).wav;golos (5).wav;yes
 Гражданпроект;golos (8).wav;golos (7).wav;no
-Агруниверситет;golos (10).wav;golos (9).wav;no
+Агроуниверситет;golos (10).wav;golos (9).wav;no
 Алое Поле;golos (12).wav;golos (11).wav;yes
 Публичная библиотека;golos (14).wav;golos (13).wav;no
 Площадь революции;golos (16).wav;golos (15).wav;yes
