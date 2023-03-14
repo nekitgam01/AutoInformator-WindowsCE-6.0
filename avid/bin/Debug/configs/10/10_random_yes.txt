@@ -1,2 +1,4 @@
 derjites.wav
 budte_vej.wav
+pri_perhode.wav
+pri_vihode.wav

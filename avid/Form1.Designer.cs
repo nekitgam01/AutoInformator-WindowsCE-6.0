@@ -42,6 +42,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -156,6 +157,7 @@
             // 
             this.panel2.Controls.Add(this.button2);
             this.panel2.Controls.Add(this.button3);
+            this.panel2.Controls.Add(this.label4);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 142);
             this.panel2.Name = "panel2";
@@ -180,6 +182,15 @@
             this.button3.TabIndex = 7;
             this.button3.Text = ">>";
             this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // label4
+            // 
+            this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label4.Location = new System.Drawing.Point(0, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(638, 313);
+            this.label4.Text = "Ожидайте, воспроизводится";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // Form1
             // 
@@ -218,6 +229,7 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.ComboBox cbPath;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label4;
 
     }
 }

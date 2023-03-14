@@ -1,4 +1,9 @@
-﻿using System;
+﻿/* @author:  nekitgam (Дубровский Никита Николаевич)
+ * @date:    6.03.2023
+ * @license: GNU GPL v3
+ */
+
+using System;
 using System.Linq;
 using System.Collections.Generic;
 using System.Text;
@@ -17,10 +22,6 @@ namespace avid
         String RouteName = "";
 
         //Списки параметров из конфигурационных файлов
-        public List<string> names;       //Имена остановок для выпадающего списка
-        public List<string> paths;       //Остановки
-        public List<string> events;      //События перед остановками (Типа "Следующая остановка - такая-то")
-        public List<string> mn;          //Воспроизводить ли random_yes на данной остановке, бывает yes или no
         public List<string> ob;          //Обязательное воспроизвдение перед events (Например "осторожно, двери закрываются", после выполняется events "Следующая остановка такая-то")
         public List<string> post;        //Обязательное вопроизведение после events
         public List<string> random_yes;  //Воспроизведение случайной записи из списка, при условии что на данной остановке стоит yes в paths
@@ -28,6 +29,8 @@ namespace avid
         public List<string> all;         //Обязательно воспроизводятся все записи перед path, ob или events (короче, всегда в начале, типа звук "ты-дын")
         public List<string> end;         //Объявляет, что остановка конечная (воспроизводятся все записи в списке)
         public List<string> post_ost;    //Воспроизводит случайную запись после paths, если в звписи есть yes
+
+        public List<GeneralRecord> general; //Указание после какой останвоки воспроизводить запись
 
         /*Конструктор класса Маршрута*/
         public Route(String name, string config_prefix)
@@ -50,10 +53,6 @@ namespace avid
             appDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase);
 
             //Инициализируем списки
-            names = new List<string>();
-            paths = new List<string>();
-            events = new List<string>();
-            mn = new List<string>();
             ob = new List<string>();
             post = new List<string>();
             random_yes = new List<string>();
@@ -61,6 +60,8 @@ namespace avid
             all = new List<string>();
             end = new List<string>();
             post_ost = new List<string>();
+
+            general = new List<GeneralRecord>();
             
 
             //Очищаем списки и загружаем данные из файлов
@@ -170,61 +171,38 @@ namespace avid
                 }
             }
 
+            
+        
+
             //Очищаем список и выпадающее меню с выбором остановки
-            paths.Clear();
-            names.Clear();
-            //Считываем записи с файла path.txt - запихивая в paths и events пути до wav файлов, 
-            //в mn - yes или no записи, и текст в выпадающий список выбора остановки
+            general.Clear();
             path = Path.Combine(appDir, @"" + config_prefix + "_path.txt");
             fi = new FileInfo(path);
             if (fi.Exists)
             {
-
                 using (StreamReader sr = fi.OpenText())
                 {
-                    bool b = false;
-                    int state = 0;
                     string s = "";
-                    string res = "";
                     while ((s = sr.ReadLine()) != null)
                     {
-                        for (int i = 0; i < s.Length; i++)
-                        {
-                            char c = s[i];
-
-                            if (c == ';')
-                            {
-                                if (state == 0)
-                                {
-                                    names.Add(res);
-                                }
-                                else if (state == 1)
-                                {
-                                    paths.Add(res);
-                                }
-                                else if (state == 2)
-                                {
-                                    events.Add(res);
-                                    b = true;
-                                    state = -1;
-                                }
-                                res = "";
-                                state++;
-                            }
-                            else
-                            {
-                                res = res + c;
-                            }
-                        }
-                        if (b)
-                        {
-                            mn.Add(res);
-                            res = "";
-                            b = false;
-                        }
+                        general.Add(new GeneralRecord(s));
                     }
                 }
             }
+
+           
+        }
+
+        public int GetIndexFromGeneralName(string text)
+        {
+            for (int i = 0; i < general.Count; i++)
+            {
+                if (general[i].name == text)
+                {
+                    return i;
+                }
+            }
+            return -1;
         }
     }
 }

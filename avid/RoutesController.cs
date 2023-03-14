@@ -1,4 +1,9 @@
-﻿using System;
+﻿/* @author:  nekitgam (Дубровский Никита Николаевич)
+ * @date:    6.03.2023
+ * @license: GNU GPL v3
+ */
+
+using System;
 using System.Linq;
 using System.Collections.Generic;
 using System.Text;
@@ -14,7 +19,7 @@ namespace avid
         String appDir = "";
 
         //Список маршрутов
-        List<Route> routes;
+        public List<Route> routes;
 
         /*Конструктор класса Контроллера маршрутов*/
         public RoutesController()
@@ -85,115 +90,6 @@ namespace avid
             }
 
             return "";
-        }
-
-        /*Получаем имя остановки из path.txt*/
-        public String GetPathsName(int route_index, int index)
-        {
-            if ((route_index != -1) && (route_index < routes.Count))
-            {
-                if ((index != -1) && (index < routes[route_index].names.Count))
-                {
-                    return routes[route_index].names[index];
-                }
-                else
-                {
-                    return "";
-                }
-            }
-
-            return "";
-        }
-
-        /*Получаем размер списка записей*/
-        public int GetPathsNamesCount(int index)
-        {
-            if ((index != -1) && (index < routes.Count))
-            {
-                return routes[index].names.Count;
-            }
-            return 0;
-        }
-
-        /*Получаем путь до файла из path.txt*/
-        public string GetPathsPath(int route_index, int index)
-        {
-            if ((route_index != -1) && (route_index < routes.Count))
-            {
-                if ((index != -1) && (index < routes[route_index].paths.Count))
-                {
-                    return routes[route_index].paths[index];
-                }
-                else
-                {
-                    return "";
-                }
-            }
-            return "";
-        }
-
-        /*Получаем размер списка записей*/
-        public int GetPathsCount(int index)
-        {
-            if ((index != -1) && (index < routes.Count))
-            {
-                return routes[index].paths.Count;
-            }
-            return 0;
-        }
-
-        /*Получаем второй путь до файла из path.txt*/
-        public string GetEventsPath(int route_index, int index)
-        {
-            if ((route_index != -1) && (route_index < routes.Count))
-            {
-                if ((index != -1) && (index < routes[route_index].events.Count))
-                {
-                    return routes[route_index].events[index];
-                }
-                else
-                {
-                    return "";
-                }
-            }
-            return "";
-        }
-
-        /*Получаем размер списка записей*/
-        public int GetEventsCount(int index)
-        {
-            if ((index != -1) && (index < routes.Count))
-            {
-                return routes[index].events.Count;
-            }
-            return 0;
-        }
-
-        /*Получаем информацию об людных местах из path.txt*/
-        public string GetMnPath(int route_index, int index)
-        {
-            if ((route_index != -1) && (route_index < routes.Count))
-            {
-                if ((index != -1) && (index < routes[route_index].mn.Count))
-                {
-                    return routes[route_index].mn[index];
-                }
-                else
-                {
-                    return "";
-                }
-            }
-            return "";
-        }
-
-        /*Получаем размер списка записей*/
-        public int GetMnCount(int index)
-        {
-            if ((index != -1) && (index < routes.Count))
-            {
-                return routes[index].mn.Count;
-            }
-            return 0;
         }
 
         /*Получаем путь до файла из ob.txt*/

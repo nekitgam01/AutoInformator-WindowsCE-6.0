@@ -1,26 +1,27 @@
-﻿Лесопарковая;golos (2).wav;golos (1).wav;no
-Парк Гагарина;golos (4).wav;golos (3).wav;yes
-ЮУрГУ;golos (6).wav;golos (5).wav;yes
-Гражданпроект;golos (8).wav;golos (7).wav;no
-Агроуниверситет;golos (10).wav;golos (9).wav;no
-Алое Поле;golos (12).wav;golos (11).wav;yes
-Публичная библиотека;golos (14).wav;golos (13).wav;no
-Площадь революции;golos (16).wav;golos (15).wav;yes
-Детский мир;golos (18).wav;golos (17).wav;yes
-Центральный рынок;golos (20).wav;golos (19).wav;yes
-Бизнес-дом Спиридонов;golos (22).wav;golos (21).wav;no
-Музей ЧТЗ;golos (24).wav;golos (23).wav;no
-Комсомольская пл.;golos (26).wav;golos (25).wav;yes
-Автомеханический завод;golos (28).wav;golos (27).wav;no
-Опытный завод;golos (30).wav;golos (29).wav;no
-Харлова (КБС);golos (32).wav;golos (31).wav;yes
-Технический колледж;golos (34).wav;golos (33).wav;yes
-Шота Руставели;golos (36).wav;golos (35).wav;no
-Дом обуви;golos (38).wav;golos (37).wav;no
-ТРК Аврора;golos (40).wav;golos (39).wav;no
-Управление соцзащиты;golos (42).wav;golos (41).wav;no
-Библиотека им. Мамина-Сибиряка;golos (44).wav;golos (43).wav;yes
-Промышленно-гуманитарный колледж;golos (46).wav;golos (45).wav;yes
-Комплекс Смолинский;golos (48).wav;golos (47).wav;no
-Новоросийская;golos (50).wav;golos (49).wav;no
-Школа 130;golos (52).wav;golos (51).wav;yes
+﻿name=Лесопарковая;ost=m10 (2).wav;next=m10 (1).wav;random=no;route=all;post_next=oplata.wav;
+name=Парк Гагарина;ost=m10 (4).wav;next=m10 (3).wav;random=no;route=all;
+name=ЮУрГУ;ost=m10 (6).wav;next=m10 (5).wav;random=no;route=all;post_next=oplata.wav;
+name=Гражданпроект;ost=m10 (8).wav;next=m10 (7).wav;random=no;route=all;post_next=budte_vej.wav;
+name=Агроуниверситет;ost=m10 (10).wav;next=m10 (9).wav;random=no;route=all;post_next=oplata.wav;
+name=Алое Поле;ost=m10 (12).wav;next=m10 (11).wav;random=no;route=all;post_next=pri_perhode.wav;
+name=Публичная библиотека;ost=m10 (14).wav;next=m10 (13).wav;random=no;route=all;post_next=oplata.wav;
+name=Площадь революции;ost=m10 (16).wav;next=m10 (15).wav;random=no;route=all;post_next=pri_vihode.wav;
+name=Детский мир;ost=m10 (18).wav;next=m10 (17).wav;random=no;route=all;post_next=oplata.wav|derjites.wav;
+name=Центральный рынок;ost=m10 (20).wav;next=m10 (19).wav;random=no;route=all;
+name=Бизнес-дом Спиридонов;ost=m10 (22).wav;next=m10 (21).wav;random=no;route=all;post_next=oplata.wav|budte_vej.wav;
+name=Музей ЧТЗ;ost=m10 (24).wav;next=m10 (23).wav;random=no;route=all;
+name=Комсомольская пл.;ost=m10 (26).wav;next=m10 (25).wav;random=no;route=all;post_next=oplata.wav|pri_perhode.wav;
+name=Автомеханический завод;ost=m10 (28).wav;next=m10 (27).wav;random=no;route=all;
+name=Опытный завод;ost=m10 (30).wav;next=m10 (29).wav;random=no;route=all;post_next=oplata.wav;
+name=Харлова (КБС);ost=m10 (32).wav;next=m10 (31).wav;random=no;route=front;post_next=derjites.wav;
+name=Завод Станкомаш;ost=m10 (34).wav;next=m10 (33).wav;random=no;route=back;post_next=oplata.wav|derjites.wav;
+name=Технический колледж;ost=m10 (36).wav;next=m10 (35).wav;random=no;route=all;
+name=Шота Руставели;ost=m10 (38).wav;next=m10 (37).wav;random=no;route=all;post_next=oplata.wav|pri_vihode.wav;
+name=Дом обуви;ost=m10 (40).wav;next=m10 (39).wav;random=no;route=all;
+name=ТРК Аврора;ost=m10 (42).wav;next=m10 (41).wav;random=no;route=all;post_next=oplata.wav|pri_perhode.wav;
+name=Управление соцзащиты;ost=m10 (44).wav;next=m10 (43).wav;random=no;route=all;
+name=Библиотека им. Мамина-Сибиряка;ost=m10 (46).wav;next=m10 (45).wav;random=no;route=front;post_next=oplata.wav;
+name=Промышленно-гуманитарный колледж;ost=m10 (48).wav;next=m10 (47).wav;random=no;route=back;post_next=oplata.wav;
+name=Комплекс Смолинский;ost=m10 (50).wav;next=m10 (49).wav;random=no;route=back;
+name=Новоросийская;ost=m10 (52).wav;next=m10 (51).wav;random=no;route=front;
+name=Школа 130;ost=m10 (54).wav;next=m10 (53).wav;random=no;route=all;post_next=oplata.wav;
